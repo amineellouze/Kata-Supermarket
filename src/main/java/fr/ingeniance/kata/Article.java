@@ -1,7 +1,5 @@
 package fr.ingeniance.kata;
 
-import java.math.BigDecimal;
-
 import fr.ingeniance.kata.promotion.Promotion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Article {
-	
+
 	private int id;
 	private String name;
 	private double price;
@@ -21,14 +19,6 @@ public class Article {
 		this.id = id;
 		this.name = name;
 		this.price = price;
-	}
-
-	public BigDecimal calculate(int quantity) {
-		if (this.promotion != null) {
-			return promotion.calculate(this, quantity);
-		} else {
-			return new BigDecimal(this.price * quantity);
-		}
 	}
 
 	@Override

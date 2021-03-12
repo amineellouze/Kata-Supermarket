@@ -29,8 +29,13 @@ public class Cart {
 	 * @return the big decimal which represents the total
 	 */
 	public BigDecimal calculate() {
-		return cart.entrySet().stream().map(entry -> entry.getKey().calculate(entry.getValue()))
-				.reduce(new BigDecimal(0), BigDecimal::add);
+		return this.cart.entrySet().stream().map(entry -> {
+			if (entry.getKey().getPromotion() != null) {
+				return entry.getKey().getPromotion().calculate(entry.getKey(), entry.getValue());
+			} else {
+				return new BigDecimal(entry.getKey().getPrice() * entry.getValue());
+			}
+		}).reduce(new BigDecimal(0), BigDecimal::add);
 	}
 
 }

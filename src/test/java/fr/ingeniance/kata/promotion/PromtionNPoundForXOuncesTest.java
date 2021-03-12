@@ -9,35 +9,32 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.junit.runners.BlockJUnit4ClassRunner;
 
 import fr.ingeniance.kata.Article;
 
-@RunWith(value = BlockJUnit4ClassRunner.class)
-public class PromtionBuyNGetMFreeTest {
+public class PromtionNPoundForXOuncesTest {
 
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
 	
-	private PromotionBuyNGetMFree pomotionBuyNGetMFree;
-	private Article articleWithPromotion;
 	
+	private PromotionNPoundForXOunces promtionNPoundForXOunces;
+	private Article articleWithPromotion;
 
 	@Before
 	public void setUp() {
-		this.pomotionBuyNGetMFree = new PromotionBuyNGetMFree(2, 1);
-		this.articleWithPromotion = new Article(2, "parfum", 3.5, pomotionBuyNGetMFree);
+		this.promtionNPoundForXOunces = new PromotionNPoundForXOunces(1.99);
+		this.articleWithPromotion = new Article(3, "yaourt", 2, promtionNPoundForXOunces);
 	}
 
 	@Test
 	public void calculateThePromotionCorrectResultat() {
-		assertEquals(new BigDecimal(10.5), this.pomotionBuyNGetMFree.calculate(this.articleWithPromotion, 4));
+		assertEquals(new BigDecimal(0.4975), this.promtionNPoundForXOunces.calculate(this.articleWithPromotion, 4));
 	}
-
+	
 	@Test
 	public void calculateThePromotionErrorResultat() {
-		assertNotEquals(new BigDecimal(10), this.pomotionBuyNGetMFree.calculate(this.articleWithPromotion, 4));
+		assertNotEquals(new BigDecimal(0.5), this.promtionNPoundForXOunces.calculate(this.articleWithPromotion, 4));
 	}
 	
 	@Test
